@@ -28,11 +28,15 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+.searchBar {
+  border: 1px;
+  border-radius: 1px;
+  width: 35%;
+  height: auto;
+  background-color: rgb(255, 254, 254);
+  border-color: rgb(42, 181, 236);
+  border-style: solid;
+  margin: 0 auto;
+  margin-bottom: 2rem;
 }
