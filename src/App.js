@@ -7,16 +7,29 @@ import React, { useState, useEffect } from "react";
 import EmployeeTable from "./components/Employee.js";
 
 
+
+
+
 function App() {
   // Getter and Setter for results & search
   const [results, setResults] = useState([])
   const [search, setSearch] = useState("")
   const [sort, setSort] = useState(true)
 
+
+
+
+
+
   // API call and setting the results to the API call, empty array makes this equivalent to componentOnMount
   useEffect(() => {
     API.getTeam().then(res => setResults(res.data.results))
   }, [])
+
+
+
+
+
 
   // Variable/function for sorting a-z
   let alphaSort = function (prop, arr) {
@@ -31,6 +44,9 @@ function App() {
     });
   };
 
+
+
+
   // Variable/function for sorting z-a
   let betaSort = function (prop, arr) {
     arr.sort(function (a, b) {
@@ -44,6 +60,9 @@ function App() {
     });
   };
 
+
+
+
   useEffect(() => {
     if (sort) {
       alphaSort("first", results)
@@ -51,19 +70,29 @@ function App() {
     else {
       betaSort('first', results)
     }
-
+//Seems okay that I inserted results here before.
   }, [results, sort])
+
+
+
+
 
 
   return (
     <div className="App" >
       <Navbar></Navbar>
+
       <Container>
-        <input placeholder="Search for employee" type="text" className='searchBar' value={search} onChange={(event) => { setSearch(event.target.value) }}>
+
+        <input placeholder="Find Employee" type="text" className='searchBar' value={search} onChange={(event) => { setSearch(event.target.value) }}>
         </input>
+
         <div width="50%" style={{margin: '0 auto', alignContent: 'center', textAlign: 'center'}}>
+
         <Table sort={sort} setSort={setSort}>
+
           {search.length < 1 ? results.map((result, i) => (
+
             <EmployeeTable
               name={result.name.first + " " + result.name.last}
               number={i}
@@ -72,10 +101,13 @@ function App() {
               picture={result.picture.large} >
             </EmployeeTable>
           )) :
+
+            //Is this es-lint going to disturb this line of code?
             // eslint-disable-next-line array-callback-return
             results.map((result, i) => {
               if (result.name.first.toLowerCase().includes(search.toLowerCase())) {
                 return (
+
                   <EmployeeTable
                     name={result.name.first + " " + result.name.last}
                     number={i}
